@@ -1,15 +1,12 @@
-from flask import Flask, send_from_directory, render_template
+from flask import Flask
+from routes import handler
+from flask_cors import CORS, cross_origin
 import os
 
-app = Flask(__name__,
-            static_folder="../client/build",
-            template_folder='../client/build')
+app = Flask(__name__)
+CORS(app, support_credentials=True)
 
-
-@app.route('/')
-def index():
-    return render_template('index.html', token='Hello flask+react')
-
+handler(app)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

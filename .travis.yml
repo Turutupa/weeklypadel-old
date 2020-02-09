@@ -1,0 +1,14 @@
+language: generic # python?
+sudo: required # not using alpine - remove?
+
+install:
+
+deploy:
+  edge: true
+  provider: s3
+  bucket:
+  skip_cleanup: true
+  access_key: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY  
+  on:
+    branch: master
